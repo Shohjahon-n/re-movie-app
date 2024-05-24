@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import Login from "./components/Login/Login";
 import SignUp from './components/SignUp/SignUp';
 import Layout from './Layout/Layout';
@@ -10,7 +9,7 @@ import Home from './pages/home/home';
 import PrivateRoute from './router/PrivateRoute';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import axios from 'axios';
-
+import { useState, useEffect } from 'react';
 export default function App() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -35,23 +34,21 @@ export default function App() {
     };
 
     return (
-        <div className="main-center">
-            <Router>
-                <Routes>
-                    <Route path="/" element={<Navigate to="/login" />} />
-                    <Route path="/" element={<Layout loading={loading} />}>
-                        <Route path="/home" element={<PrivateRoute />}>
-                            <Route index element={<Home data={data} setPatchData={handleBookmarkChange} />} />
-                        </Route>
-                        <Route path="/movie" element={<Movie data={data} setPatchData={handleBookmarkChange} />} />
-                        <Route path="/tv" element={<TV data={data} setPatchData={handleBookmarkChange} />} />
-                        <Route path="/liked" element={<Liked data={data} setPatchData={handleBookmarkChange} />} />
+        <Router>
+            <Routes>
+                <Route path="/" element={<Navigate to="/login" />} />
+                <Route path="/" element={<Layout loading={loading} />}>
+                    <Route path="/home" element={<PrivateRoute />}>
+                        <Route index element={<Home data={data} setPatchData={handleBookmarkChange} />} />
                     </Route>
-                    <Route path="/login" element={<Login form={form} />} />
-                    <Route path="/signup" element={<SignUp setForm={setForm} />} />
-                    <Route path="*" element={<ErrorPage />} />
-                </Routes>
-            </Router>
-        </div>
+                    <Route path="/movie" element={<Movie data={data} setPatchData={handleBookmarkChange} />} />
+                    <Route path="/tv" element={<TV data={data} setPatchData={handleBookmarkChange} />} />
+                    <Route path="/liked" element={<Liked data={data} setPatchData={handleBookmarkChange} />} />
+                </Route>
+                <Route path="/login" element={<Login form={form} />} />
+                <Route path="/signup" element={<SignUp setForm={setForm} />} />
+                <Route path="*" element={<ErrorPage />} />
+            </Routes>
+        </Router>
     );
 }
