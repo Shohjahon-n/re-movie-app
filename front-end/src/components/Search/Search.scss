@@ -1,0 +1,52 @@
+.search_content {
+    .input_content {
+        padding-top: 60px;
+        width: 100%;
+
+        form {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            column-gap: 20px;
+
+            input {
+                width: 50%;
+                font-size: 24px;
+                background-color: inherit;
+                border: 0;
+                outline: 0;
+                color: white;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 889px) {
+    .search_content {
+        .input_content {
+            padding: 20px;
+
+            form {
+                input {
+                    width: 90%;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .search_content {
+        .input_content {
+            form {
+                input {
+                    font-size: 16px;
+                }
+            }
+
+            img {
+                width: 24px;
+            }
+        }
+    }
+}
